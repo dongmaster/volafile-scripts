@@ -3,12 +3,13 @@
 // @namespace   volafile.highlight
 // @description Highlights messages depending on user-defined words.
 // @include     https://volafile.io/r/*
+// @match       https://volafile.io/r/*
 // @version     1
 // @grant       none
 // ==/UserScript==
 
 // Edit this!
-var words = [/dong/i, /mod/i];
+var words = [/test/i];
 /* The format is like this:
 ** /word/i
 **
