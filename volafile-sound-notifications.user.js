@@ -9,11 +9,6 @@
 
 // Go down below the huge wall of links and shit to get to the place where you change the sound used
 
-/*
-If a sound is not really short the sound will have a tag that states that it is longer
-bossnigger is one of those sounds
-*/
-
 var sounds = {
   airhorn : 'http://a.pomf.se/yolywt.mp3',
   azu1 : 'http://a.pomf.se/kqgrww.mp3',
@@ -157,7 +152,7 @@ var observer = new MutationObserver(function(mutations){
     var classregex = new RegExp(uclass, 'i');
     
     
-    
+    setTimeout(function() {
     if(classregex.test(nameNode[nameNode.length - 1].parentNode.getAttribute('class'))) {
       if(/highlight/.test(nameNode[nameNode.length - 1].parentNode.getAttribute('class')) && random_mode === false && person_mode === false && !/messagelog/i.test(nameNode[nameNode.length - 1].innerHTML) && !/room/i.test(nameNode[nameNode.length - 1].innerHTML) && !/system/i.test(nameNode[nameNode.length - 1].innerHTML) && !/network/i.test(nameNode[nameNode.length - 1].innerHTML) && !/motd/i.test(nameNode[nameNode.length - 1].innerHTML) && !/log/i.test(nameNode[nameNode.length - 1].innerHTML)) {
         play_sound();
@@ -174,6 +169,7 @@ var observer = new MutationObserver(function(mutations){
         play_specific_sound(person_sounds);
       }
     }
+    }, 10);
     
 	});
 });
