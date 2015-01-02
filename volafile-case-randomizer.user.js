@@ -14,6 +14,8 @@
 var random = true;
 var sequence_lower = false;
 var sequence_upper = false;
+var sequence_lower_reverse = false;
+var sequence_upper_reverse = false;
 var disco = false;
 
 
@@ -39,6 +41,7 @@ console.log(original_name, original_name_regex)
 var name_length = chat_name.length;
 var randselector = randnum(2);
 var sequence_index = -1;
+var sequence_reverse_index = name_length - 1;
 
 
 var disco_index = 0;
@@ -82,6 +85,48 @@ function sequence_lower_casing() {
   chat_name = chat_name.split('');
 
   chat_name[sequence_index] = chat_name[sequence_index].toUpperCase();
+
+  chat_name = chat_name.join("");
+
+  id('chat_name').value = chat_name;
+}
+
+function sequence_lower_reverse_casing() {
+  chat_name = id('chat_name').value
+  name_length = chat_name.length;
+
+  if(sequence_reverse_index === 0) {
+    sequence_reverse_index = name_length - 1;
+  } else {
+    sequence_reverse_index--;
+    chat_name = chat_name.toLowerCase();
+  }
+
+  chat_name = chat_name.toLowerCase();
+  chat_name = chat_name.split('');
+
+  chat_name[sequence_reverse_index] = chat_name[sequence_reverse_index].toUpperCase();
+
+  chat_name = chat_name.join("");
+
+  id('chat_name').value = chat_name;
+}
+
+function sequence_upper_reverse_casing() {
+  chat_name = id('chat_name').value
+  name_length = chat_name.length;
+
+  if(sequence_reverse_index === 0) {
+    sequence_reverse_index = name_length - 1;
+  } else {
+    sequence_reverse_index--;
+    chat_name = chat_name.toUpperCase();
+  }
+
+  chat_name = chat_name.toUpperCase();
+  chat_name = chat_name.split('');
+
+  chat_name[sequence_reverse_index] = chat_name[sequence_reverse_index].toLowerCase();
 
   chat_name = chat_name.join("");
 
@@ -169,6 +214,14 @@ var observer = new MutationObserver(function(mutations){
     
     if(sequence_upper === true) {
       sequence_upper_casing();
+    }
+    
+    if(sequence_lower_reverse === true) {
+      sequence_lower_reverse_casing();
+    }
+    
+    if(sequence_upper_reverse === true) {
+      sequence_upper_reverse_casing();
     }
     
     if(disco === true) {
