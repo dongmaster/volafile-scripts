@@ -3,6 +3,7 @@
 // @namespace   volafile.case.randomizer
 // @description OPTIONS ARE INSIDE THE SCRIPT, YOU NEED TO EDIT IT TO ENABLE OTHER OPTIONS. Changes the casing in your name everytime someone says something. Feel free to come up with a better system for when the name changes the casing.
 // @include     https://volafile.io/r/*
+// @match       https://volafile.io/r/*
 // @version     1
 // @grant       none
 // ==/UserScript==
