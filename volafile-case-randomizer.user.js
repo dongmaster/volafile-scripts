@@ -11,10 +11,10 @@
 // OPTIONS
 // DO NOT TURN ON SEVERAL AT A TIME
 // TO TURN OFF A SETTING, SET IT TO FALSE
-var random = false;
+var random = true;
 var sequence_lower = false;
 var sequence_upper = false;
-var disco = true;
+var disco = false;
 
 
 
