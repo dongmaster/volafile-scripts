@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Volafile Case Randomizer
 // @namespace   volafile.case.randomizer
-// @description OPTIONS ARE INSIDE THE SCRIPT, YOU NEED TO EDIT IT TO ENABLE OTHER OPTIONS. Changes the casing in your name everytime someone says something. Feel free to come up with a better system for when the name changes the casing.
+// @description OPTIONS ARE INSIDE THE SCRIPT, YOU NEED TO EDIT IT TO ENABLE OTHER OPTIONS. Changes the casing (capitalization) in your name every time you say something. 
 // @include     https://volafile.io/r/*
 // @match       https://volafile.io/r/*
 // @version     1
@@ -24,6 +24,7 @@ var disco = false;
 
 
 // DO NOT FUCK WITH THE CODE BELOW
+var pyramid = false; // Does nothing at the moment
 
 function id(input) {
   return document.getElementById(input);
@@ -223,10 +224,15 @@ var observer = new MutationObserver(function(mutations){
     if(sequence_upper_reverse === true) {
       sequence_upper_reverse_casing();
     }
-    
+
     if(disco === true) {
       disco_casing();
     }
+    /*
+    if(pyramid === true) {
+      pyramid_casing();
+    }
+    */
   }
   
 });
