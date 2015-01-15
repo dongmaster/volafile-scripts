@@ -46,7 +46,7 @@ var sounds = {
   wizardringtone : 'http://a.pomf.se/saotcz.ogg',
   wow : 'http://a.pomf.se/gnelps.mp3',
   mgs_alert : 'http://a.pomf.se/xdyclf.mp3',
-  quake3 : 'http://a.pomf.se/syfmfm.ogg'
+  quake3 : 'http://a.pomf.se/dymqir.ogg'
 };
 // ################## CONFIGURATION THINGS BELOW ##################
 
