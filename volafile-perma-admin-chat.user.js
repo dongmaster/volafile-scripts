@@ -24,6 +24,7 @@ function init() {
     button.appendChild(button_text);
     button.addEventListener("click", func, true);
     button.style = "user-select: none; -moz-user-select: none; margin-left: 5px;";
+    button.setAttribute("id", "admin_chat_toggle");
 
     document.getElementById('chat_hbar').appendChild(button)
 
@@ -57,10 +58,12 @@ function init() {
       case true:
         admin = false;
         notify("Disabled permanent admin chat.");
+        document.getElementById("admin_chat_toggle").innerHTML = "A|D";
         break;
       case false:
         admin = true;
         notify("Enabled permanent admin chat.");
+        document.getElementById("admin_chat_toggle").innerHTML = "A|E";
         break;
     }
   }
