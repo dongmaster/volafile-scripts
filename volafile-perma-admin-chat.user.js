@@ -68,7 +68,7 @@ function init() {
     }
   }
   
-  add_shitposting_button(" A ", toggle_admin);
+  add_shitposting_button("A-D", toggle_admin);
 }
 
 document.onreadystatechange = function () {
@@ -78,7 +78,7 @@ document.onreadystatechange = function () {
   } else if (state == 'complete') {
     setTimeout(function() {
       init();
-    }, 1500);
+    }, 1000);
       
   }
 }
