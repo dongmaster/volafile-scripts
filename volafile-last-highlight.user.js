@@ -11,14 +11,15 @@
 function init() {
   var chat = document.getElementById("chat_input");
   
-  function add_lazy_button(text, func) {
+  function add_lazy_button(func) {
     var button = document.createElement("SPAN");
-    var button_text = document.createTextNode(text);
+    //var button_text = document.createTextNode(text);
 
-    button.appendChild(button_text);
+    //button.appendChild(button_text);
     button.addEventListener("click", func, true);
     button.style = "user-select: none; -moz-user-select: none; margin-left: 5px;";
     button.setAttribute("id", "admin_chat_toggle");
+    button.setAttribute("class", "icon-arrow-up clickable")
 
     document.getElementById('chat_hbar').appendChild(button)
 
@@ -29,12 +30,12 @@ function init() {
     var elems = document.getElementsByClassName("highlight");
     console.log(elems);
   
-    elems[elems.length - 1].id = "iamalazyfucker"
-    window.location.hash = "iamalazyfucker"
+    elems[elems.length - 1].id = "lasthighlight"
+    window.location.hash = "lasthighlight"
     elems[elems.length - 1].id = "";
   }
   
-  add_lazy_button("LH", go_to_last_highlight);
+  add_lazy_button(go_to_last_highlight);
 }
 
 (function() {
