@@ -18,7 +18,6 @@ function init() {
     //button.appendChild(button_text);
     button.addEventListener("click", func, true);
     button.style = "user-select: none; -moz-user-select: none; margin-left: 5px;";
-    button.setAttribute("id", "admin_chat_toggle");
     button.setAttribute("class", "icon-arrow-up clickable")
 
     document.getElementById('chat_hbar').appendChild(button)
