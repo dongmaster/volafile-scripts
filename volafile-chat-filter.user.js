@@ -4,7 +4,7 @@
 // @description Is someone shitposting in chat? Filter them with this script.
 // @match       *://volafile.io/r/*
 // @include     *://volafile.io/r/*
-// @version     7
+// @version     8
 // @author      Dongmaster
 // @author      cyberia
 // ==/UserScript==
