@@ -90,7 +90,6 @@ id('header_row2').appendChild(textfieldSpan);
 var textfield = document.createElement('INPUT');
 textfield.setAttribute('id', 'filter_input');
 textfield.setAttribute('type', 'text');
-textfield.style.backgroundColor = '#264559';
 textfield.style.height = '1.2em';
 textfield.style.verticalAlign = 'bottom';
 textfield.setAttribute('placeholder', 'Add user to filter');
@@ -104,7 +103,6 @@ if(filter_by_type === true) {
 	var textfield2 = document.createElement('INPUT');
 	textfield2.setAttribute('id', 'filter_input2');
 	textfield2.setAttribute('type', 'text');
-	textfield2.style.backgroundColor = '#264559';
 	textfield2.style.height = '1.2em';
 	textfield2.style.verticalAlign = 'bottom';
 	textfield2.setAttribute('placeholder', 'Type');
