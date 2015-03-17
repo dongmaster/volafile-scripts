@@ -9,34 +9,74 @@
 // @author      cyberia
 // ==/UserScript==
 
-//Names entered in the filter_input textfield are only temporary.
-
-var reg = 'profile';
-var unreg = 'chat_message';
-var all = 'all';
-
-//Edit the variables below to your liking!
-var filtered = []; //This is the blacklist for registered users AND unregistered users. Use this if you don't want to block all unregistered users! The format for filtering users: /username/i    if you want to filter several users: /user1/i, /user2/i
-var usertype = []; //[OPTIONAL] This determines what registration status will be used when filtering a user. For example, You can filter someone who is unregistered and is using the name "Dongmaster" and not filter the registered person.
-var filter_by_type = false;
-/*	Formant for usertype:
-**	reg = Filter registered users.
-**	unreg = Filter unregistered users.
-**  all = Filter registered AND unregistered users.
+/*
+** HOW TO USE:
 **
-**	Please not that the name and the registration status has to line up. For example:
-**		filtered = [/dongmaster/i, /dead/i, /lg188/i, /davinci/i];
-**		usertype = [unreg, unreg, unreg];
+** Filtering a user:
+**  Edit line 59 below like this (replace user1 with a username):
+**   var filtered = [/user1/i];
+**  /user1/i means "Look for user1 in everyone's name and if it finds user1 in a username, remove the message." the i in /user1/i means it should ignore case-sensitivity.
 **
-**	The above example will filter unregistered people using the names dongmaster, dead and lg188. People using the name davinci, though, won't be filtered.
+** Filtering several users:
+**  Edit line 59 below like this:
+**   var filtered = [/user1/i, /user2/i, /user3/i];
+**  Please not the fact that there are comma (,) symbols after each name. You should obviously change user1 and others to real usernames.
+**
+** Filtering by type:
+**  Edit line 59, 60 and 61:
+**   var filtered = [/dongmaster/i];
+**   var usertype = [unreg];
+**   var filter_by_type = true;
+**  This filters users based on whether they are logged in or not.
+**  The example provided above would filter the fake, NOT logged in, Dongmaster. The real, logged in, Dongmaster, would not be filtered.
+**  There are three options for usertypes:
+**   reg = Registered (logged in) user. Greennames.
+**   unreg = Unregistered (NOT logged in) user. Whitenames.
+**   all = Registered AND Unregistered user. Normal filtering, basically.
+**  The all option was included because when you turn on usertype filtering, you NEED to provide a usertype for EVERY username.
+**
+** Filtering all whitenames but having some in a whitelist (heh):
+**  Edit line 64 and 65:
+**   var unregisteredWhitelist = [/coolwhiteuser/i, /milky/i];
+**   var filterUnregistered = true;
+**  This will filter ALL whitenames. If you put names in the whitelist, they will not be filtered.
 **
 */
 
+//Names entered in the filter_input textfield are only temporary.
 
-var unregisteredWhitelist = []; //(Variable below must be enabled for this) This is the whitelist for unregistered users. The format for whitelisting users is; /username/i     If you want several users: /user1/i, /user2/i
-var filterUnregistered = false; //Change to true if you want to filter ALL unregistered users (users in the whitelist are not filtered when this is enabled).
+// Do not edit these
+var reg = 'profile';
+var unreg = 'chat_message';
+var all = 'all';
+// Do not edit these. Look below.
+
+
+
+
+
+//Edit the variables below to your liking!
+var filtered = [];
+var usertype = [];
+var filter_by_type = false;
+
+
+var unregisteredWhitelist = []; 
+var filterUnregistered = false;
 //Edit the variables above to your liking!
 
+
+
+
+
+
+
+
+
+
+
+
+// Do not edit the shit below unless you know what you are doing. Don't complain about shit not working after you've made changes to the script. I'm looking at you, triggu.
 function id(selector) {
     return document.getElementById(selector);
 }
