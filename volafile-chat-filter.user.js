@@ -177,7 +177,7 @@ var observer = new MutationObserver(function(mutations){
 						nameNode.parentNode.parentNode.removeChild(nameNode.parentNode);
 					}
 				} else if(filter_by_type === true) {
-					if(filtered[i].test(nameNode.innerHTML.slice(0, -1))) {
+					if(filtered[i].test(nameNode.textContent)) {
 						var utype = usertype[i];
 						var uclass = nameNode.parentNode.getAttribute('class');
 						var classregex = new RegExp(uclass, 'i');
