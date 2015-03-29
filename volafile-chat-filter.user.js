@@ -4,7 +4,7 @@
 // @description Is someone shitposting in chat? Filter them with this script.
 // @match       *://volafile.io/r/*
 // @include     *://volafile.io/r/*
-// @version     8
+// @version     9
 // @author      Dongmaster
 // @author      cyberia
 // ==/UserScript==
@@ -173,7 +173,7 @@ var observer = new MutationObserver(function(mutations){
 
 			for(i = 0; i < filtered.length; i++) {
 				if(filter_by_type === false) {
-					if(filtered[i].test(nameNode.innerHTML.slice(0, -1))) {
+					if(filtered[i].test(nameNode.textContent)) {
 						nameNode.parentNode.parentNode.removeChild(nameNode.parentNode);
 					}
 				} else if(filter_by_type === true) {
