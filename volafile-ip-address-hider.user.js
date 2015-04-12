@@ -42,7 +42,12 @@ function toggle_ip_addresses_simple() {
   }
 }
 
+
+// Takes values related to the display CSS option/paramater/something. block, inline, none, that kind of stuff.
 function toggle_ip_addresses(input) {
+  names = document.getElementsByClassName("username");
+  files = document.getElementsByClassName("tag_key_ip");
+  
   if(input === "none") {
     hiding_ip_addresses = true;
   } else if(input === "inline") {
@@ -68,12 +73,16 @@ function toggle_ip_addresses(input) {
   }
 }
 
-var target = document.querySelector('#chat_messages');
+var target_chat = document.querySelector('#chat_messages');
+var target_file = document.querySelector('#file_list');
 
 var observer = new MutationObserver(function (mutations) {
 	mutations.forEach(function (mutation) {
     
     if(hiding_ip_addresses === true) {
+      // Hides ip addresses in chat
+      names = document.getElementsByClassName("username");
+      
       var name = document.getElementsByClassName("username");
       
       var spans = name[name.length - 1].getElementsByTagName("span");
@@ -86,7 +95,16 @@ var observer = new MutationObserver(function (mutations) {
           ip_address.style.display = "none";
         }
       }
-      
+    }
+	});
+});
+
+var observer_files = new MutationObserver(function (mutations) {
+	mutations.forEach(function (mutation) {
+    
+    if(hiding_ip_addresses === true) {
+      files = document.getElementsByClassName("tag_key_ip");
+      files[0].style.display = "none";
     }
 	});
 });
@@ -95,7 +113,8 @@ var config = {
 	childList: true
 };
 
-observer.observe(target, config);
+observer.observe(target_chat, config);
+observer_files.observe(target_file, config);
 
 toggle_ip_addresses("inline");
 
