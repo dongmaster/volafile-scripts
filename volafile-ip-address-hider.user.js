@@ -3,7 +3,7 @@
 // @namespace   volafile.ip.hider
 // @description Hides ip addresses for mods.
 // @include     https://volafile.io/r/*
-// @version     1
+// @version     2
 // @grant       none
 // ==/UserScript==
 
@@ -117,6 +117,37 @@ observer.observe(target_chat, config);
 observer_files.observe(target_file, config);
 
 toggle_ip_addresses("inline");
+
+
+
+
+var chat = document.getElementById('chat_input');
+
+chat.addEventListener("keydown", function(e) {
+  if(e.keyCode === 13) {
+    modify_message();
+  }
+}, true);
+
+function modify_message() {
+  var message = chat.value;
+  var split = message.split(" ");
+  
+  if(split[0] === "/rev") {
+    var new_message = esrever.reverse(message.substring(4, message.length));
+    
+    chat.value = new_message;
+  }
+  
+  if(split[0] === "/ip") {
+    toggle_ip_addresses_simple();
+    
+    chat.value = "";
+  }
+}
+
+
+
 
 (function() {
     var state = document.readyState;
