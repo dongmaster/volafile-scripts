@@ -9,6 +9,7 @@
 
 var messages = [];
 var index = 0;
+var set_message = true;
 
 var chat = document.getElementById("chat_input");
 
@@ -26,19 +27,23 @@ chat.addEventListener("keydown", function(e) {
     // Up arrow
     if(index - 1 > -1) {
       index--;
-    } else {
-      index = (messages.length - 1);
     }
     
+    console.log(index);
     chat.value = messages[index];
   } else if(e.keyCode === 40) {
     // Down arrow
+    set_message = true;
     if(index + 1 < messages.length) {
       index++;
     } else {
-      index = 0;
+      chat.value = "";
+      index = messages.length;
+      set_message = false;
     }
     
-    chat.value = messages[index];
+    if(set_message === true) {
+      chat.value = messages[index];
+    }
   }
 }, true)
