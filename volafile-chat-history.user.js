@@ -3,7 +3,7 @@
 // @namespace   volafile.chat.history
 // @description Cycles through everything you've said with the up and down arrow.
 // @include     https://volafile.io/r/*
-// @version     2
+// @version     3
 // @grant       none
 // ==/UserScript==
 
@@ -23,15 +23,14 @@ chat.addEventListener("keydown", function(e) {
     index = messages.length;
   }
   
-  if(e.keyCode === 38) {
+  if(e.keyCode === 38 && messages.length > 0) {
     // Up arrow
     if(index - 1 > -1) {
       index--;
     }
     
-    console.log(index);
     chat.value = messages[index];
-  } else if(e.keyCode === 40) {
+  } else if(e.keyCode === 40 && messages.length > 0) {
     // Down arrow
     set_message = true;
     if(index + 1 < messages.length) {
