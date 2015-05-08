@@ -3,7 +3,7 @@
 // @namespace   volafile.chat.history
 // @description Cycles through everything you've said with the up and down arrow.
 // @include     https://volafile.io/r/*
-// @version     1
+// @version     2
 // @grant       none
 // ==/UserScript==
 
