@@ -11,8 +11,10 @@ If your original name was Dongmaster, it would then become dOOngMasTER or some o
 
 ##Volafile Chat++
 This script adds additional chat commands.
-###List of commands
+#####List of commands
+
 1. /rev
+
 /rev will reverse everything in your message.
 Example: /rev This is reversed.
 
