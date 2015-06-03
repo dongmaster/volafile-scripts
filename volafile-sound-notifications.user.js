@@ -46,29 +46,48 @@ var sounds = {
   wizardringtone : 'http://a.pomf.se/saotcz.ogg',
   wow : 'http://a.pomf.se/gnelps.mp3',
   mgs_alert : 'http://a.pomf.se/xdyclf.mp3',
-  quake3 : 'http://a.pomf.se/dymqir.ogg'
+  quake3 : 'https://spookyskeletons.me/hitsound.ogg'
 };
+
+// Quake 3 old link http://a.pomf.se/dymqir.ogg
 // ################## CONFIGURATION THINGS BELOW ##################
 
 /* Format:
 [name] : sounds.[soundfile]
 
 example: 
-  dongmaster : sounds.quake3
+  "dongmaster" : sounds.quake3
 
 */
 var person_sounds = {
-  
+  "report" : sounds.dosh
 };
 
 // Correct format for the below variable: sounds.[anything in the sounds object]
 // Example: sounds.mgs_alert
 var highlight_sound = sounds.quake3; //Default highlight sound.
-var random_mode = false; //Plays a random sound file everytime someone highlights you.
-var person_mode = false; //Plays a specific sound file everytime a specific person highlights you.
+var random_mode = false; // TL;DR: Plays a random sound file everytime someone highlights you.
+var person_mode = false; // TL;DR Plays a specific sound file everytime a specific person highlights you.
 //The volume ranges from 0 to 1
 //To set the volume to half set volume to 0.5
 var volume = 1;
+
+
+/*
+Extensive explanations for the modes:
+  Random mode: If this is enabled, a random sound will be played everytime someone highlights you/mention your name
+  
+  Person mode (retarded name that doesn't explain anything, sorry): If this is enabled, you can put stuff in the person_sounds object (An object is something that has keys and values, where a key holds a value).
+  Example of person_sounds object:
+    "dongmaster" : sounds.quake3,
+    "xiao" : sounds.tuturu,
+    "siberia" : sounds.bitchnigga 
+
+  NOTE: Do you see that , behind the first two people? That's there because you need to separate them. If you only want one person there you do not have to put a , behind his/her name : sounds.sound thing
+
+
+*/
+
 // ################## CONFIGURATION THINGS ABOVE ##################
 
 var audioplayer = document.createElement('AUDIO');
