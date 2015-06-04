@@ -44,7 +44,7 @@ function modify_message() {
 
       //console.log("SPLIT1: " + split[i]);
 
-      split[i] = split[i].replace("/", "");
+      //split[i] = split[i].replace("/", "");
       
       //console.log(split[i].split(" ").length);
       var ip = "";
