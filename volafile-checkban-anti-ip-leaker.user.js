@@ -18,6 +18,16 @@ var misspell_tolerance = 1.49;
 var needle = "checkban";
 var needle_regex = new RegExp(needle, "i");
 
+// The possible misspellings for the cb shorthand is hardcoded because I don't trust the algo will be good for just 2 letters.
+var possible_misspellings = ["cb",
+                            "/cb",
+                            "/c",
+                            "cbb",
+                            "/cbb",
+                            "ccb",
+                            "/ccb",
+                            "/b"];
+
 var chat = document.getElementById('chat_input');
 
 chat.addEventListener("keydown", function(e) {
@@ -33,6 +43,12 @@ function modify_message() {
   
   //for(var i = 0; i < 0; i++) {
     if(split[i][0] !== "\\" && split[i][0] !== "@") {
+      for(var j = 0; j < possible_misspellings.length; j++) {
+        if(split[i] === possible_misspellings[j]) {
+          split[i] = needle;
+        }
+      }
+      
       var number = /\d/.exec(split[i]);
     
       if(number) {
@@ -45,7 +61,7 @@ function modify_message() {
         }
       }
 
-      console.log("SPLIT1: " + split[i]);
+      //console.log("SPLIT1: " + split[i]);
 
       //split[i] = split[i].replace("/", "");
       
@@ -63,15 +79,13 @@ function modify_message() {
           //console.log("IP: " + ip);
 
           split[i] = split[i].split(" ")[0];
-
-
         }
 
         //console.log("Fixed");
       }
 
        //console.log(ip);
-       console.log("SPLIT2: " + split[i]);
+       //console.log("SPLIT2: " + split[i]);
 
       if(is_misspelled(needle, split[i]) < misspell_tolerance) {
         split[i] = needle + ip;
@@ -81,17 +95,15 @@ function modify_message() {
         split[i] = "/" + split[i];
       }
 
-      console.log("SPLIT3: " + split[i]);
-    } else {
-      if(split[i][0] === "\\") {
+      //console.log("SPLIT3: " + split[i]);
+    } else if(split[i][0] === "\\") {
        split[i] = split[i].substring(1);
        //console.log(split[i]);
-      }
     }
   //}
   
   var joined = split.join(" ");
-  console.log("JOINED: " + joined);
+  //console.log("JOINED: " + joined);
   chat.value = joined;
 }
 
