@@ -30,8 +30,8 @@ function modify_message() {
   var message = chat.value;
   var split = message.split(" ");
   
-  for(var i = 0; i < split.length; i++) {
-    if(split[i][0] !== "\\") {
+  for(var i = 0; i < 2; i++) {
+    if(split[i][0] !== "\\" && split[i][0] !== "@") {
       var number = /\d/.exec(split[i]);
     
       if(number) {
@@ -42,7 +42,7 @@ function modify_message() {
         split[i] = sub_neg + " " + sub_pos;
       }
 
-      //console.log("SPLIT1: " + split[i]);
+      console.log("SPLIT1: " + split[i]);
 
       //split[i] = split[i].replace("/", "");
       
@@ -68,7 +68,7 @@ function modify_message() {
       }
 
        //console.log(ip);
-       //console.log("SPLIT2: " + split[i]);
+       console.log("SPLIT2: " + split[i]);
 
       if(is_misspelled(needle, split[i]) < misspell_tolerance) {
         split[i] = needle + ip;
@@ -78,10 +78,12 @@ function modify_message() {
         split[i] = "/" + split[i];
       }
 
-      //console.log("SPLIT3: " + split[i]);
+      console.log("SPLIT3: " + split[i]);
     } else {
-      split[i] = split[i].substring(1);
-      console.log(split[i]);
+      if(split[i][0] === "\\") {
+       split[i] = split[i].substring(1);
+       //console.log(split[i]);
+      }
     }
   }
   
