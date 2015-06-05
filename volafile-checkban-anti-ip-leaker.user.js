@@ -29,8 +29,9 @@ chat.addEventListener("keydown", function(e) {
 function modify_message() {
   var message = chat.value;
   var split = message.split(" ");
+  var i = 0; 
   
-  for(var i = 0; i < 2; i++) {
+  //for(var i = 0; i < 0; i++) {
     if(split[i][0] !== "\\" && split[i][0] !== "@") {
       var number = /\d/.exec(split[i]);
     
@@ -38,8 +39,10 @@ function modify_message() {
         var index = split[i].indexOf(number) + 1;
         var sub_pos = split[i].substring(index - 1);
         var sub_neg = split[i].substring(-1, index - 1);
-
-        split[i] = sub_neg + " " + sub_pos;
+        
+        if(is_misspelled(sub_neg, needle) < misspell_tolerance) {
+         split[i] = sub_neg + " " + sub_pos;
+        }
       }
 
       console.log("SPLIT1: " + split[i]);
@@ -85,7 +88,7 @@ function modify_message() {
        //console.log(split[i]);
       }
     }
-  }
+  //}
   
   var joined = split.join(" ");
   console.log("JOINED: " + joined);
