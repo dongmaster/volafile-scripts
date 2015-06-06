@@ -46,7 +46,8 @@ var sounds = {
   wizardringtone : 'http://a.pomf.se/saotcz.ogg',
   wow : 'http://a.pomf.se/gnelps.mp3',
   mgs_alert : 'http://a.pomf.se/xdyclf.mp3',
-  quake3 : 'https://spookyskeletons.me/hitsound.ogg'
+  quake3 : 'http://spookyskeletons.me/hitsound.ogg',
+  honk : 'http://spookyskeletons.me/honk.mp3'
 };
 
 // Quake 3 old link http://a.pomf.se/dymqir.ogg
@@ -60,7 +61,7 @@ example:
 
 */
 var person_sounds = {
-  "report" : sounds.dosh
+  
 };
 
 // Correct format for the below variable: sounds.[anything in the sounds object]
@@ -175,6 +176,7 @@ var observer = new MutationObserver(function(mutations){
     if(classregex.test(nameNode[nameNode.length - 1].parentNode.getAttribute('class'))) {
       if(/highlight/.test(nameNode[nameNode.length - 1].parentNode.getAttribute('class')) && random_mode === false && person_mode === false && !/messagelog/i.test(nameNode[nameNode.length - 1].innerHTML) && !/room/i.test(nameNode[nameNode.length - 1].innerHTML) && !/system/i.test(nameNode[nameNode.length - 1].innerHTML) && !/network/i.test(nameNode[nameNode.length - 1].innerHTML) && !/motd/i.test(nameNode[nameNode.length - 1].innerHTML) && !/log/i.test(nameNode[nameNode.length - 1].innerHTML)) {
         play_sound();
+        
       } else if(/highlight/.test(nameNode[nameNode.length - 1].parentNode.getAttribute('class')) && random_mode === true && person_mode === false && !/messagelog/i.test(nameNode[nameNode.length - 1].innerHTML) && !/room/i.test(nameNode[nameNode.length - 1].innerHTML) && !/system/i.test(nameNode[nameNode.length - 1].innerHTML) && !/network/i.test(nameNode[nameNode.length - 1].innerHTML) && !/motd/i.test(nameNode[nameNode.length - 1].innerHTML) && !/log/i.test(nameNode[nameNode.length - 1].innerHTML)) {
         highlight_sound = fetch_random(sounds)
         audioplayer.src = highlight_sound
