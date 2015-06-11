@@ -8,6 +8,17 @@
 // @grant       none
 // ==/UserScript==
 
+var old_message = document.getElementsByClassName("chat_message");
+
+for(var i = 0; i < old_message.length; i++) {
+  var word = old_message[i].getElementsByClassName("chat_text")[0].innerHTML.split(" ")[0];
+  
+  if(/&gt;/.test(word)) {
+    //message.style.color = "#8fb42e";
+    message.style.color = "#99c527";
+  }
+}
+
 var target_chat = document.querySelector('#chat_messages');
 
 var observer = new MutationObserver(function (mutations) {
