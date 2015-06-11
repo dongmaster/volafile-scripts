@@ -90,15 +90,16 @@ function modify_message() {
       if(is_misspelled(needle, split[i]) < misspell_tolerance) {
         split[i] = needle + ip;
       }
+      
 
       if(split[i].toLowerCase() === needle || needle_regex.test(split[i]) && split[i].toLowerCase() !== "/" + needle) {
+        split[i] = "/" + split[i];
+      } else if(split[i].toLowerCase() === needle || needle_regex.test(split[i])) {
+        split[i] = split[i].replace("/", "");
         split[i] = "/" + split[i];
       }
 
       //console.log("SPLIT3: " + split[i]);
-    } else if(split[i][0] === "\\") {
-       split[i] = split[i].substring(1);
-       //console.log(split[i]);
     }
   //}
   
