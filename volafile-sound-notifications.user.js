@@ -46,8 +46,8 @@ var sounds = {
   wizardringtone : 'http://a.pomf.se/saotcz.ogg',
   wow : 'http://a.pomf.se/gnelps.mp3',
   mgs_alert : 'http://a.pomf.se/xdyclf.mp3',
-  quake3 : 'http://spookyskeletons.me/hitsound.ogg',
-  honk : 'http://spookyskeletons.me/honk.mp3'
+  quake3 : 'https://spookyskeletons.me/hitsound.ogg',
+  honk : 'https://spookyskeletons.me/honk.mp3'
 };
 
 // Quake 3 old link http://a.pomf.se/dymqir.ogg
