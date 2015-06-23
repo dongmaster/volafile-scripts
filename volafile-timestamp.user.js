@@ -44,28 +44,30 @@ function id(input) {
 var target = document.querySelector('#chat_messages');
 var observer = new MutationObserver(function (mutations) {
 	mutations.forEach(function (mutation) {
+		
+		var nodes = mutation.addedNodes;
+		
+		for(var i = 0; i < nodes.length; i++) {
+			var valid = nodes[i];
+			var bla = valid.hasAttribute('timeAdded');
 
-		var valid = mutation.target.lastChild;
-		var bla = valid.hasAttribute('timeAdded');
-
-		if(bla == false ){
-			addTimestamp();
-			valid.setAttribute('timeAdded','true');
-		} else {
-			valid.setAttribute("timeAdded", 'false');
+			if(bla == false ){
+				addTimestamp(nodes[i]);
+				valid.setAttribute('timeAdded','true');
+			} else {
+				valid.setAttribute("timeAdded", 'false');
+			}
 		}
 	});
 });
 
 var config = {
-	attributes: true,
-	childList: true,
-	characterData: true
+	childList: true
 };
 
 var date, hours, minutes, seconds, finalTime;
 
-function addTimestamp() {
+function addTimestamp(node) {
 	date = new Date();
 	hours = date.getHours()
 	minutes = date.getMinutes();
@@ -88,9 +90,10 @@ function addTimestamp() {
 	var timestamp = create_element('SPAN', finalTime + ' | ');
 	timestamp.setAttribute("class", "userscript_chat_timestamp");
 
-	var usernames = document.getElementsByClassName('username');
+	//var usernames = document.getElementsByClassName('username');
+	var usernames = node.children[0];
 
-	usernames[usernames.length - 1].insertBefore(timestamp, usernames[usernames.length - 1].childNodes[0]);
+	usernames.insertBefore(timestamp, usernames.childNodes[0]);
 }
 
 observer.observe(target, config);
