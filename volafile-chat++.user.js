@@ -82,6 +82,28 @@
 
 }(this));
 
+function notify(message) {
+    var notification = document.createElement('DIV');
+    var notification_message_container = document.createElement('SPAN');
+    var notification_username_container = document.createElement('A');
+    
+    var notification_username = document.createTextNode('System:');
+    var notification_message = document.createTextNode(message);
+    
+    notification.setAttribute("class", "chat_message admin");
+    notification_username_container.setAttribute("class", "username");
+    
+    notification_message_container.appendChild(notification_message);
+    notification_username_container.appendChild(notification_username);
+    
+    notification.appendChild(notification_username_container);
+    notification.appendChild(notification_message_container);
+    
+    document.getElementById('chat_messages').appendChild(notification);
+  
+    document.getElementById('chat_messages').scrollTop = document.getElementById('chat_messages').scrollTop + 30;
+  }
+
 var chat = document.getElementById('chat_input');
 
 chat.addEventListener("keydown", function(e) {
@@ -94,9 +116,21 @@ function modify_message() {
   var message = chat.value;
   var split = message.split(" ");
   
-  if(split[0] === "/rev") {
+  if (split[0] === "/rev") {
     var new_message = esrever.reverse(message.substring(4, message.length));
     
     chat.value = new_message;
   }
+	
+	if (split[0] === "/up") {
+		var new_message = message.substring(4, message.length).toUpperCase();
+		
+		chat.value = new_message;
+	}
+	
+	if (split[0] === "/down") {
+		var new_message = message.substring(4, message.length).toLowerCase();
+		
+		chat.value = new_message;
+	}
 }
