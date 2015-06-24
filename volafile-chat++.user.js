@@ -107,7 +107,7 @@ function notify(message) {
 var chat = document.getElementById('chat_input');
 
 chat.addEventListener("keydown", function(e) {
-  if(e.keyCode === 13) {
+  if (e.keyCode === 13) {
     modify_message();
   }
 }, true);
@@ -117,20 +117,119 @@ function modify_message() {
   var split = message.split(" ");
   
   if (split[0] === "/rev") {
-    var new_message = esrever.reverse(message.substring(4, message.length));
+    var new_message = esrever.reverse(split.slice(1, split.length).join(" "));
     
     chat.value = new_message;
   }
 	
 	if (split[0] === "/up") {
-		var new_message = message.substring(4, message.length).toUpperCase();
+		var new_message = split.slice(1, split.length).join(" ").toUpperCase();
 		
 		chat.value = new_message;
 	}
 	
 	if (split[0] === "/down") {
-		var new_message = message.substring(4, message.length).toLowerCase();
+		var new_message = split.slice(1, split.length).join(" ").toLowerCase();
 		
 		chat.value = new_message;
 	}
+	
+	if (split[0] === "/upload") {
+		if (split.length > 1) {
+			var text_to_upload = split.slice(2, split.length).join(" ");
+			var room_id = window.config.room_id;
+			var name = document.getElementById("chat_name").value;
+			var filename = split[1];
+
+			chat.value = "";
+
+			upload(room_id, name, text_to_upload, filename);
+		} else {
+			chat.value = "";
+			notify("Usage: /upload filename.txt Your text here");
+			notify("Warning! The filename has to be one word!");
+		}
+	}
 }
+
+function upload(room, name, file_content, filename) {
+		// Do not criticize this code, myon.
+		// This was hacked togehter in like 30 minutes or something and I have no intention of changing it right now.
+		
+    var aFileParts = [file_content];
+    var oMyBlob = new Blob(aFileParts, {type : 'text/plain'}); // the blob
+
+    var upload_key_url = "https://volafile.io/rest/getUploadKey?name=" + name + "&room=" + room;
+
+
+    function _upload(room, file, key, server, filename) {
+        var xhr = new XMLHttpRequest();
+        var fd = new FormData();
+      
+        var upload_url = "https://" + server + "/upload?room=" + room + "&key=";
+        
+        xhr.open("POST", upload_url + key + "&filename=" + filename, true);
+        
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Handle response.
+                var response = xhr.responseText;
+
+            } else {
+              console.log(xhr.responseText);
+            }
+        };
+        
+        fd.append("file", file);
+        
+        xhr.send(fd);
+    }
+
+
+
+    var xhr = function(u, c, t) {
+        var r = new XMLHttpRequest();
+        r.onreadystatechange = function() {
+            if (r.readyState == 4 && r.status == 200) {
+                c(r.response);
+            }
+        };
+        r.open("GET", u, true);
+      r.setRequestHeader("Accept", "application/json");
+        if (t) {r.responseType = t;}
+        r.overrideMimeType('text/plain');
+        r.send();
+        return r;
+    }
+
+    xhr(upload_key_url, lel);
+
+    function lel(benis) {
+      var ukey = JSON.parse(benis);
+      console.log(ukey.key)
+      
+      _upload(room, oMyBlob, ukey.key, ukey.server, filename);
+    }
+}
+
+function notify(message) {
+    var notification = document.createElement('DIV');
+    var notification_message_container = document.createElement('SPAN');
+    var notification_username_container = document.createElement('A');
+    
+    var notification_username = document.createTextNode('Log:');
+    var notification_message = document.createTextNode(message);
+    
+    notification.setAttribute("class", "chat_message admin");
+    notification_username_container.setAttribute("class", "username");
+    
+    notification_message_container.appendChild(notification_message);
+    notification_username_container.appendChild(notification_username);
+    
+    notification.appendChild(notification_username_container);
+    notification.appendChild(notification_message_container);
+    
+    document.getElementById('chat_messages').appendChild(notification);
+  
+    document.getElementById('chat_messages').scrollTop = document.getElementById('chat_messages').scrollTop + 30;
+  }
