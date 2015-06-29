@@ -60,6 +60,9 @@ to say something in admin chat.
 You can use the shortcut CTRL+Enter to toggle it.
 Or you can press the button next to the user counter to toggle it.
 
+##Volafile Show Filter Buttons
+Automatically clicks the "Filter Files" button for you when entering a room.
+
 ##Volafile Sound Notification
 This script will play a sound (Quake III hitsound) whenever someone highlights you.
 Works nicely with the Volafile Highlight++ script.
