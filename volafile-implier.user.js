@@ -8,30 +8,15 @@
 // @grant       none
 // ==/UserScript==
 
-var old_message = document.getElementsByClassName("chat_message");
-
-for(var i = 0; i < old_message.length; i++) {
-  var word = old_message[i].getElementsByClassName("chat_text")[0].innerHTML.split(" ")[0];
-  
-  if(/&gt;/.test(word)) {
-    //message.style.color = "#8fb42e";
-    message.style.color = "#99c527";
-  }
-}
-
 var target_chat = document.querySelector('#chat_messages');
 
 var observer = new MutationObserver(function (mutations) {
 	mutations.forEach(function (mutation) {
-    var message = mutation.addedNodes[0];
-    var word = message.getElementsByClassName("chat_text")[0].innerHTML.split(" ")[0];
+    var messages = mutation.addedNodes;
     
-    console.log(word);
-    if(/&gt;/.test(word)) {
-      //message.style.color = "#8fb42e";
-      message.style.color = "#99c527";
+    for(var i = 0; i < messages.length; i++) {
+      colorize(messages[i]);
     }
-    
 	});
 });
 
@@ -40,3 +25,15 @@ var config = {
 };
 
 observer.observe(target_chat, config);
+
+function colorize(message_container) {
+  var message_parts = message_container.getElementsByClassName("chat_text");
+  
+  for(var i = 0; i < message_parts.length; i++) {
+    var word = message_parts[i].innerHTML.split(" ")[0];
+
+    if(word.slice(0, 4) === "&gt;") {
+      message_parts[i].style.color = "#99c527";
+    }
+  }
+}
