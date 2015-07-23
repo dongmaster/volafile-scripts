@@ -79,22 +79,28 @@ var target_file = document.querySelector('#file_list');
 var observer = new MutationObserver(function (mutations) {
 	mutations.forEach(function (mutation) {
     
+    var nodes = mutation.addedNodes;
+    
     if(hiding_ip_addresses === true) {
       // Hides ip addresses in chat
       names = document.getElementsByClassName("username");
       
-      var name = document.getElementsByClassName("username");
-      
-      var spans = name[name.length - 1].getElementsByTagName("span");
-      var ip_address = "";
+      for(var i = 0; i < nodes.length; i++) {
+        //var name = document.getElementsByClassName("username");
+        var name = nodes[i].getElementsByClassName("username")[0];
+        
+        var spans = name.getElementsByTagName("span");
+        var ip_address = "";
 
-      for(var j = 0; j < spans.length; j++) {
-        if(/(\(|\))/.test(spans[j].textContent)) {
-          ip_address = spans[j];
+        for(var j = 0; j < spans.length; j++) {
+          if(/(\(|\))/.test(spans[j].textContent)) {
+            ip_address = spans[j];
 
-          ip_address.style.display = "none";
+            ip_address.style.display = "none";
+          }
         }
       }
+      
     }
 	});
 });
@@ -132,12 +138,6 @@ chat.addEventListener("keydown", function(e) {
 function modify_message() {
   var message = chat.value;
   var split = message.split(" ");
-  
-  if(split[0] === "/rev") {
-    var new_message = esrever.reverse(message.substring(4, message.length));
-    
-    chat.value = new_message;
-  }
   
   if(split[0] === "/ip") {
     toggle_ip_addresses_simple();
