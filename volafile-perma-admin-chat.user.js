@@ -250,7 +250,8 @@ function init() {
     button.style = "user-select: none; -moz-user-select: none; margin-left: 5px;";
     button.setAttribute("id", "admin_chat_toggle");
 
-    document.getElementById('chat_hbar').appendChild(button)
+    //document.getElementById('chat_hbar').appendChild(button);
+		document.getElementById("user_count").appendChild(button);
 
     //document.getElementById('chat_name_container').insertBefore(button, document.getElementById('chat_name_container').parentNode.childNodes[0])
   }
@@ -299,14 +300,10 @@ function init() {
   });
 }
 
-document.onreadystatechange = function () {
-  var state = document.readyState
-  if (state == 'interactive') {
-      //init()
-  } else if (state == 'complete') {
-    setTimeout(function() {
-      init();
-    }, 1000);
-      
-  }
-}
+(function() {
+    var state = document.readyState;
+    if(state === 'interactive' || state === 'complete') {
+        init();
+    }
+    else setTimeout(arguments.callee, 100);
+})();

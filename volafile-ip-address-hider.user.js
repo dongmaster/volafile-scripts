@@ -26,7 +26,7 @@ function add_shitposting_button(text, func) {
   button.style = "user-select: none; -moz-user-select: none; margin-left: 5px;";
   button.setAttribute("id", "");
 
-  document.getElementById('chat_hbar').appendChild(button)
+  document.getElementById("user_count").appendChild(button);
 
   //document.getElementById('chat_name_container').insertBefore(button, document.getElementById('chat_name_container').parentNode.childNodes[0])
 }
