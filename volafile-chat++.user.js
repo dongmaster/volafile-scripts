@@ -128,6 +128,21 @@ function modify_message() {
 			notify("Warning! The filename has to be one word!");
 		}
 	}
+	
+	if (split[0] === "/automoko") {
+		var word = split.slice(1, split.length).join(" ");
+		chat.value = "";
+		
+		automoko(word);
+	}
+	
+	if (split[0] === "/cyllenus") {
+		cyllenus();
+	}
+	
+	if (split[0] === "/somalia") {
+		somalia();
+	}
 }
 
 function upload(room, name, file_content, filename) {
@@ -211,3 +226,66 @@ function notify(message) {
   
     document.getElementById('chat_messages').scrollTop = document.getElementById('chat_messages').scrollTop + 30;
   }
+
+
+
+function cyllenus() {
+
+		function autism_word(word) {
+        // Autisms up a word
+        
+        var num = rand_num(6);
+        var new_word = "";
+        
+        for (var i = 0; i < word.length; i++) {
+            if (num !== 1) {
+                new_word += word[i];
+            } else {
+                new_word += word[rand_num(word.length - 1)];
+            }
+            
+            var num = rand_num(6);
+        }
+        
+        return new_word;
+    }
+	
+    function autism() {
+        var split = chat.value.split(" ");
+        var new_sentence = [];
+
+        for (var i = 0; i < split.length; i++) {
+            new_sentence.push(autism_word(split[i]));
+        }
+
+        chat.value = new_sentence.slice(1, new_sentence.length).join(" ");
+    }
+
+    autism();
+}
+
+function rand_num(max) {
+    return Math.floor(Math.random() * max + 1);
+}
+
+function somalia() {
+	var message = chat.value.split(" ");
+	
+	var new_message = "";
+	
+	var num = rand_num(6);
+	
+	for (var i = 0; i < message.length; i++) {
+		if (num <= 3) {
+			new_message += "ooga ";
+		} else {
+			new_message += "booga ";
+		}
+		
+		num = rand_num(6);
+	}
+	
+	chat.value = new_message;
+}
+
+
