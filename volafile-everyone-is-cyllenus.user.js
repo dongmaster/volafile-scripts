@@ -44,12 +44,20 @@ function cyllenus(chat) {
         
         for (var i = 0; i < word.length; i++) {
             if (num !== 1) {
-                new_word += word[i];
+                if (word.length > 1) {
+                    new_word += word[i];
+                } else {
+                    new_word += word;
+                }
             } else {
-                new_word += word[rand_num(word.length - 1)];
+                if (word.length > 1) {
+                    new_word += word[rand_num(word.length - 1)];
+                } else {
+                    new_word += word;
+                }
             }
             
-            var num = rand_num(6);
+            num = rand_num(6);
         }
         
         return new_word;
