@@ -213,7 +213,7 @@ function notify(message) {
     var notification_username = document.createTextNode('Log:');
     var notification_message = document.createTextNode(message);
     
-    notification.setAttribute("class", "chat_message admin");
+    notification.setAttribute("class", "chat_message staff");
     notification_username_container.setAttribute("class", "username");
     
     notification_message_container.appendChild(notification_message);
@@ -227,6 +227,13 @@ function notify(message) {
     document.getElementById('chat_messages').scrollTop = document.getElementById('chat_messages').scrollTop + 30;
   }
 
+function say(input) {
+    var ci = document.getElementById('chat_input');
+    ci.value = input;
+    var ev = document.createEvent('KeyboardEvent');
+    ev.initKeyEvent('keypress', true, true, window, false, false, false, false, 13, 0);
+    ci.dispatchEvent(ev);
+}
 
 
 function cyllenus() {
@@ -287,5 +294,14 @@ function somalia() {
 	
 	chat.value = new_message;
 }
+
+
+
+
+
+
+
+
+
 
 

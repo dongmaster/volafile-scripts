@@ -264,7 +264,7 @@ function init() {
     var notification_username = document.createTextNode('System:');
     var notification_message = document.createTextNode(message);
     
-    notification.setAttribute("class", "chat_message admin");
+    notification.setAttribute("class", "chat_message staff");
     notification_username_container.setAttribute("class", "username");
     
     notification_message_container.appendChild(notification_message);
@@ -282,12 +282,12 @@ function init() {
     switch(admin) {
       case true:
         admin = false;
-        notify("Disabled permanent admin chat.");
+        notify("Disabled permanent staff chat.");
         document.getElementById("admin_chat_toggle").innerHTML = "A|D";
         break;
       case false:
         admin = true;
-        notify("Enabled permanent admin chat.");
+        notify("Enabled permanent staff chat.");
         document.getElementById("admin_chat_toggle").innerHTML = "A|E";
         break;
     }
