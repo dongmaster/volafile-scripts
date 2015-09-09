@@ -261,7 +261,7 @@ function init() {
     var notification_message_container = document.createElement('SPAN');
     var notification_username_container = document.createElement('A');
     
-    var notification_username = document.createTextNode('System:');
+    var notification_username = document.createTextNode('Log:');
     var notification_message = document.createTextNode(message);
     
     notification.setAttribute("class", "chat_message staff");
