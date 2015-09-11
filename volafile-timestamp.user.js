@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name        Volafile chat timestamps
-// @namespace   volafile.improvements
+// @namespace   volafile.chat.timestamps
 // @description Adds timestamps to chat messages on Volafile.
 // @match       https://volafile.io/r/*
 // @include     https://volafile.io/r/*
-// @version     6
+// @version     7
 // ==/UserScript==
 
 /*
@@ -24,9 +24,29 @@
  * 		Fixed moderators not being able to bring up the ban menu by clicking an IP.
  *  Version 6:
  *    Added a class to the timestamp (userscript_chat_timestamp).
+ *  Version 7:
+ *    Re-wrote the script.
  **/
 
-console.debug("volafile-timestamps is running ");
+var target = document.querySelector('#chat_messages');
+
+var observer = new MutationObserver(function (mutations) {
+	mutations.forEach(function (mutation) {
+        var messages = mutation.addedNodes;
+        
+        for (var i = 0; i < messages.length; i++) {
+            if (messages[i].hasAttribute("data-timestamp") === false) {
+                timestamp(messages[i]);
+            }
+        }
+	});
+});
+
+var config = {
+	childList: true
+};
+
+observer.observe(target, config);
 
 function create_element(elem, text) {
     var uelem = document.createElement(elem);
@@ -37,63 +57,32 @@ function create_element(elem, text) {
     return uelem;
 }
 
-function id(input) {
-    return document.getElementById(input);
+function timestamp(message) {
+    var date = new Date();
+    
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+    
+    if (hours <= 9) {
+        hours = "0" + hours;
+    }
+    
+    if (minutes <= 9) {
+        minutes = "0" + minutes;
+    }
+    
+    if (seconds <= 9) {
+        seconds = "0" + seconds;
+    }
+    
+    var time = hours + ":" + minutes + ":" + seconds + " | ";
+    
+    var timestamp_element = create_element("SPAN", time);
+    timestamp_element.setAttribute("class", "userscript_chat_timestamp");
+    
+    var username = message.getElementsByClassName("username")[0];
+    username.insertBefore(timestamp_element, username.childNodes[0]);
+    
+    message.setAttribute("data-timestamp", "true");
 }
-
-var target = document.querySelector('#chat_messages');
-var observer = new MutationObserver(function (mutations) {
-	mutations.forEach(function (mutation) {
-		
-		var nodes = mutation.addedNodes;
-		
-		for(var i = 0; i < nodes.length; i++) {
-			var valid = nodes[i];
-			var bla = valid.hasAttribute('timeAdded');
-
-			if(bla == false ){
-				addTimestamp(nodes[i]);
-				valid.setAttribute('timeAdded','true');
-			} else {
-				valid.setAttribute("timeAdded", 'false');
-			}
-		}
-	});
-});
-
-var config = {
-	childList: true
-};
-
-var date, hours, minutes, seconds, finalTime;
-
-function addTimestamp(node) {
-	date = new Date();
-	hours = date.getHours()
-	minutes = date.getMinutes();
-	seconds = date.getSeconds();
-    
-	if (seconds <= 9) {
-		seconds = '0' + seconds;
-	}
-    
-	if (minutes <= 9) {
-		minutes = '0' + minutes;
-	}
-    
-  if (hours <= 9) {
-   	hours = '0' + hours;
-	}
-    
-	finalTime = hours + ':' + minutes + ':' + seconds;
-  
-	var timestamp = create_element('SPAN', finalTime + ' | ');
-	timestamp.setAttribute("class", "userscript_chat_timestamp");
-
-	//var usernames = document.getElementsByClassName('username');
-	var usernames = node.children[0];
-
-	usernames.insertBefore(timestamp, usernames.childNodes[0]);
-}
-
-observer.observe(target, config);
