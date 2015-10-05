@@ -72,4 +72,6 @@ One of the most useful scripts.
 This script will add timestamps to the chat. 
 24-hour format only. Americans need not apply.
 
-
+##Volafile Emoji
+Adds emojis to the volafile chat. Full list of emoji commands can be found here:
+http://www.emoji-cheat-sheet.com/
