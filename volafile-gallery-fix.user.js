@@ -8,7 +8,6 @@
 // ==/UserScript==
 
 var target = document.querySelector('#gallery_image_wrapper');
-var wot = false;
 
 var observer = new MutationObserver(function (mutations) {
 	mutations.forEach(function (mutation) {
@@ -29,7 +28,6 @@ observer.observe(target, config);
 function init() {
   function fix_click(e) {
     var gallery_image = document.getElementById("gallery_image");
-    console.log("cock");
     e.stopPropagation();
     e.preventDefault();
 
@@ -42,5 +40,4 @@ function init() {
   }
 
   gallery_image.addEventListener("click", fix_click, true);
-  console.log("hue");
 }
