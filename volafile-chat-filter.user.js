@@ -91,10 +91,12 @@ var textfield = document.createElement('INPUT');
 textfield.setAttribute('id', 'filter_input');
 textfield.setAttribute('type', 'text');
 textfield.style.height = '1.2em';
+textfield.style.lineHeight = '1.2em';
 textfield.style.verticalAlign = 'bottom';
 textfield.setAttribute('placeholder', 'Add user to filter');
 textfield.style.width = '145px';
 textfield.setAttribute('autocomplete', 'off');
+textfield.setAttribute('class', ' defaultValue');
 
 textfieldSpan.appendChild(textfield);
 
@@ -104,11 +106,13 @@ if(filter_by_type === true) {
 	textfield2.setAttribute('id', 'filter_input2');
 	textfield2.setAttribute('type', 'text');
 	textfield2.style.height = '1.2em';
+    textfield2.style.lineHeight = '1.2em';
 	textfield2.style.verticalAlign = 'bottom';
 	textfield2.setAttribute('placeholder', 'Type');
 	textfield2.style.width = '42px';
 	textfield2.style.marginLeft = '5px';
 	textfield2.setAttribute('autocomplete', 'off');
+    textfield2.setAttribute('class', ' defaultValue');
 
 	textfieldSpan.appendChild(textfield2);
 
