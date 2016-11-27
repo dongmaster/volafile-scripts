@@ -10,8 +10,12 @@
 
 
 var names = document.getElementsByClassName("username");
-var files = document.getElementsByClassName("tag_key_ip");
+//var files = document.getElementsByClassName("tag_key_ip");
 var hiding_ip_addresses = false;
+
+var css = document.createElement("STYLE");
+css.innerHTML = ".tag_key_ip { display: none; }";
+document.body.appendChild(css);
 
 function init() {
   add_shitposting_button("IP", toggle_ip_addresses_simple);
@@ -46,15 +50,15 @@ function toggle_ip_addresses_simple() {
 // Takes values related to the display CSS option/paramater/something. block, inline, none, that kind of stuff.
 function toggle_ip_addresses(input) {
   names = document.getElementsByClassName("username");
-  files = document.getElementsByClassName("tag_key_ip");
-  
+  //files = document.getElementsByClassName("tag_key_ip");
+
   if(input === "none") {
     hiding_ip_addresses = true;
   } else if(input === "inline") {
     hiding_ip_addresses = false;
   }
-  
-  
+
+
   for(var i = 0; i < names.length; i++) {
     var spans = names[i].getElementsByTagName("span");
     var ip_address = "";
@@ -67,10 +71,15 @@ function toggle_ip_addresses(input) {
       }
     }
   }
-  
+
+
+  css.disabled = !hiding_ip_addresses;
+
+  /*
   for(var i = 0; i < files.length; i++) {
     files[i].style.display = input;
   }
+  */
 }
 
 var target_chat = document.querySelector('#chat_messages');
@@ -78,17 +87,17 @@ var target_file = document.querySelector('#file_list');
 
 var observer = new MutationObserver(function (mutations) {
 	mutations.forEach(function (mutation) {
-    
+
     var nodes = mutation.addedNodes;
-    
+
     if(hiding_ip_addresses === true) {
       // Hides ip addresses in chat
       names = document.getElementsByClassName("username");
-      
+
       for(var i = 0; i < nodes.length; i++) {
         //var name = document.getElementsByClassName("username");
-        var name = nodes[i].getElementsByClassName("username")[0];
-        
+        var name = nodes[i].querySelector("a.username");
+
         var spans = name.getElementsByTagName("span");
         var ip_address = "";
 
@@ -100,27 +109,35 @@ var observer = new MutationObserver(function (mutations) {
           }
         }
       }
-      
+
     }
 	});
 });
 
+/*
 var observer_files = new MutationObserver(function (mutations) {
 	mutations.forEach(function (mutation) {
-    
+
+    var nodes = mutation.addedNodes;
+
     if(hiding_ip_addresses === true) {
+      nodes.forEach(function(node) {
+        
+      });
+
+
       files = document.getElementsByClassName("tag_key_ip");
       files[0].style.display = "none";
     }
 	});
 });
-
+*/
 var config = {
 	childList: true
 };
 
 observer.observe(target_chat, config);
-observer_files.observe(target_file, config);
+//observer_files.observe(target_file, config);
 
 toggle_ip_addresses("inline");
 
