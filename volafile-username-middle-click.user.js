@@ -3,36 +3,19 @@
 // @namespace   volafile.username.middle.click
 // @description Middle-click on names in the file list to open their profile page.
 // @include     https://volafile.io/r/*
-// @version     1
+// @version     2
 // @grant       none
 // ==/UserScript==
 
-var target = document.querySelector('#file_list');
-
-var observer = new MutationObserver(function (mutations) {
-  mutations.forEach(function (mutation) {
-    var messages = mutation.addedNodes;
-
-    for (var i = 0; i < messages.length; i++) {
-      apply_event(messages[i].querySelector(".tag_key_user"))
+addEventListener("mouseup", function(e) {
+    if (e.button !== 1) {
+        return;
     }
-	});
-});
-
-var config = {
-	childList: true
-};
-
-observer.observe(target, config);
-
-
-function apply_event(element) {
-
-  element.addEventListener("mouseup", function(e){
-    if (e.button === 1) {
-      e.preventDefault();
-      window.open("https://volafile.io/user/" + element.textContent)
+    if (!e.target.classList.contains("tag_key_user")) {
+        return;
     }
-  });
-
-}
+    e.preventDefault();
+    e.stopPropagation();
+    open("https://volafile.io/user/" + e.target.textContent);
+    return false;
+}, true);
