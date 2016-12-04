@@ -3,173 +3,72 @@
 // @namespace   volafile.ip.hider
 // @description Hides ip addresses for mods.
 // @include     https://volafile.io/r/*
-// @version     2
+// @version     3.99
 // @grant       none
+// @run-at      document-start
 // ==/UserScript==
 
-
-
-var names = document.getElementsByClassName("username");
-//var files = document.getElementsByClassName("tag_key_ip");
-var hiding_ip_addresses = false;
-
-var css = document.createElement("STYLE");
-css.innerHTML = ".tag_key_ip { display: none; }";
-document.body.appendChild(css);
-
-function init() {
-  add_shitposting_button("IP", toggle_ip_addresses_simple);
-}
-
-function add_shitposting_button(text, func) {
-  var button = document.createElement("SPAN");
-  var button_text = document.createTextNode(text);
-
-  button.appendChild(button_text);
-  button.addEventListener("click", func, true);
-  button.style = "user-select: none; -moz-user-select: none; margin-left: 5px;";
-  button.setAttribute("id", "");
-
-  document.getElementById("user_count").appendChild(button);
-
-  //document.getElementById('chat_name_container').insertBefore(button, document.getElementById('chat_name_container').parentNode.childNodes[0])
-}
-
-function toggle_ip_addresses_simple() {
-  switch(hiding_ip_addresses) {
-    case false:
-      toggle_ip_addresses("none");
-      break;
-    case true:
-      toggle_ip_addresses("inline");
-      break;
-  }
-}
-
-
-// Takes values related to the display CSS option/paramater/something. block, inline, none, that kind of stuff.
-function toggle_ip_addresses(input) {
-  names = document.getElementsByClassName("username");
-  //files = document.getElementsByClassName("tag_key_ip");
-
-  if(input === "none") {
-    hiding_ip_addresses = true;
-  } else if(input === "inline") {
-    hiding_ip_addresses = false;
-  }
-
-
-  for(var i = 0; i < names.length; i++) {
-    var spans = names[i].getElementsByTagName("span");
-    var ip_address = "";
-
-    for(var j = 0; j < spans.length; j++) {
-      if(/(\(|\))/.test(spans[j].textContent)) {
-        ip_address = spans[j];
-
-        ip_address.style.display = input;
-      }
-    }
-  }
-
-
-  css.disabled = !hiding_ip_addresses;
-
-  /*
-  for(var i = 0; i < files.length; i++) {
-    files[i].style.display = input;
-  }
-  */
-}
-
-var target_chat = document.querySelector('#chat_messages');
-var target_file = document.querySelector('#file_list');
-
-var observer = new MutationObserver(function (mutations) {
-	mutations.forEach(function (mutation) {
-
-    var nodes = mutation.addedNodes;
-
-    if(hiding_ip_addresses === true) {
-      // Hides ip addresses in chat
-      names = document.getElementsByClassName("username");
-
-      for(var i = 0; i < nodes.length; i++) {
-        //var name = document.getElementsByClassName("username");
-        var name = nodes[i].querySelector("a.username");
-
-        var spans = name.getElementsByTagName("span");
-        var ip_address = "";
-
-        for(var j = 0; j < spans.length; j++) {
-          if(/(\(|\))/.test(spans[j].textContent)) {
-            ip_address = spans[j];
-
-            ip_address.style.display = "none";
-          }
-        }
-      }
-
-    }
-	});
-});
-
-/*
-var observer_files = new MutationObserver(function (mutations) {
-	mutations.forEach(function (mutation) {
-
-    var nodes = mutation.addedNodes;
-
-    if(hiding_ip_addresses === true) {
-      nodes.forEach(function(node) {
-        
-      });
-
-
-      files = document.getElementsByClassName("tag_key_ip");
-      files[0].style.display = "none";
-    }
-	});
-});
-*/
-var config = {
-	childList: true
-};
-
-observer.observe(target_chat, config);
-//observer_files.observe(target_file, config);
-
-toggle_ip_addresses("inline");
-
-
-
-
-var chat = document.getElementById('chat_input');
-
-chat.addEventListener("keydown", function(e) {
-  if(e.keyCode === 13) {
-    modify_message();
-  }
-}, true);
-
-function modify_message() {
-  var message = chat.value;
-  var split = message.split(" ");
-  
-  if(split[0] === "/ip") {
-    toggle_ip_addresses_simple();
-    
-    chat.value = "";
-  }
-}
-
-
-
-
 (function() {
-    var state = document.readyState;
-    if(state === 'interactive' || state === 'complete') {
-        init();
-    }
-    else setTimeout(arguments.callee, 100);
+    'use strict';
+
+    console.log("running", GM_info.script.name, GM_info.script.version);
+
+    addEventListener("DOMContentLoaded", function domload() {
+        removeEventListener("DOMContentLoaded", domload, true);
+
+        const style = document.createElement("style");
+        style.textContent = `
+body[noipspls] a.username > span,
+body[noipspls] .tag_key_ip {
+display: none;
+}
+`;
+        document.body.appendChild(style);
+        let state = localStorage.getItem("noipspls");
+        if (state !== false) {
+            state = true;
+        }
+        console.log(state);
+        const update = () => {
+            if (state) {
+                document.body.setAttribute("noipspls", "true");
+            }
+            else {
+                document.body.removeAttribute("noipspls");
+            }
+            localStorage.setItem("noipspls", state);
+        };
+        const toggle = () => {
+            state = !state;
+            update();
+        };
+        update();
+
+        let btn = document.createElement("a");
+        btn.textContent = "IP";
+        btn.style.padding = "0 1ex";
+        let uc = document.querySelector("#user_count_icon");
+        uc.parentElement.insertBefore(btn, uc.nextSibling);
+        btn.addEventListener("click", toggle);
+
+        const commands = {
+            ip(e) {
+                toggle();
+                return true;
+            },
+        };
+
+        // hook the original command processor
+        const chatp = Room.prototype._extensions.chat.prototype;
+        const onCommand = chatp.onCommand;
+        chatp.onCommand = function(command, e, ...args) {
+            let fn = commands[command];
+            if (fn && fn.call(commands, e, args)) {
+                return;
+            }
+            args.unshift(e);
+            args.unshift(command);
+            return onCommand.apply(this, args);
+        };
+    }, true);
 })();
