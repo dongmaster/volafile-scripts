@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        Volafile ip address hider
+// @name        Volafile ip address hider 2
 // @namespace   volafile.ip.hider
 // @description Hides ip addresses for mods.
 // @include     https://volafile.io/r/*
@@ -46,9 +46,9 @@ display: none;
 
         let btn = document.createElement("a");
         btn.textContent = "IP";
-        btn.style.padding = "0 1ex";
-        let uc = document.querySelector("#user_count_icon");
-        uc.parentElement.insertBefore(btn, uc.nextSibling);
+        btn.style = "user-select: none; -moz-user-select: none; margin-left: 5px;";
+        let uc = document.querySelector("#user_count");
+        uc.appendChild(btn);
         btn.addEventListener("click", toggle);
 
         const commands = {
