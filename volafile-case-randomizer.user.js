@@ -2,9 +2,9 @@
 // @name        Volafile Case Randomizer
 // @namespace   volafile.case.randomizer
 // @description OPTIONS ARE INSIDE THE SCRIPT, YOU NEED TO EDIT IT TO ENABLE OTHER OPTIONS. Changes the casing (capitalization) in your name every time you say something. 
-// @include     https://volafile.io/r/*
-// @match       https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @match       https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 

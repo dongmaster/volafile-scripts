@@ -2,9 +2,9 @@
 // @name        Volafile highlight++
 // @namespace   volafile.highlight
 // @description Highlights messages depending on user-defined words.
-// @include     https://volafile.(io|org)/r/*
-// @match       https://volafile.(io|org)/r/*
-// @version     2
+// @include     https://volafile.org/r/*
+// @match       https://volafile.org/r/*
+// @version     4
 // @grant       none
 // ==/UserScript==
 
@@ -36,8 +36,8 @@ var observer = new MutationObserver(function(mutations) {
                     if (word.test(text_node.innerText)) {
                         set_highlight(node);
                     }
-                })
-            })
+                });
+            });
         });
     });
 });

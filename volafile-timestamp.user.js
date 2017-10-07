@@ -2,9 +2,9 @@
 // @name        Volafile chat timestamps
 // @namespace   volafile.chat.timestamps
 // @description Adds timestamps to chat messages on Volafile.
-// @match       https://volafile.io/r/*
-// @include     https://volafile.io/r/*
-// @version     7
+// @match       https://volafile.org/r/*
+// @include     https://volafile.org/r/*
+// @version     8
 // ==/UserScript==
 
 /*

@@ -2,9 +2,9 @@
 // @name        Volafile Implier
 // @namespace   volafile.implier
 // @description Here at volafile we imply implications
-// @include     https://volafile.io/r/*
-// @match       https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @match       https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 

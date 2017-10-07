@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name       Volemoji.
 // @description Volafile smiles.
-// @match      *://volafile.io/*
-// @include    *://volafile.io/*
+// @match      https://volafile.org/r/*
+// @include    https://volafile.org/r/*
 // @require https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.js
-// @version 0.0.1.20150715025436
+// @version 0.0.1.20150715025437
 // @namespace https://greasyfork.org/users/13310
 // ==/UserScript==
 

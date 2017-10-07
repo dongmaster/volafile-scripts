@@ -2,9 +2,9 @@
 // @name        Volafile Name to Chat
 // @namespace   volafile.name.to.chat
 // @description Click a name in chat and it will appear in the chat input.
-// @include     https://volafile.io/r/*
-// @match       https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @match       https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 var separator = ", ";

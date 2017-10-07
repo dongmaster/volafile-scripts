@@ -2,8 +2,8 @@
 // @name        Volafile Show Filter Buttons
 // @namespace   volafile.show.filter.buttons
 // @description You don't have to press the Filter Files button anymore
-// @include     https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 

@@ -2,8 +2,8 @@
 // @name        Volafile Everyone is Cyllenus
 // @namespace   volafile.everyone.is.cyllenus
 // @description Everyone is Cyllenus!
-// @include     https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 
@@ -12,10 +12,10 @@ var target_chat = document.querySelector('#chat_messages');
 var observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
         var messages = mutation.addedNodes;
-        
+
         for (var i = 0; i < messages.length; i++) {
           var message_parts = messages[i].getElementsByClassName("chat_text");
-          
+
           for (var j = 0; j < message_parts.length; j++) {
             console.log(message_parts[j]);
             message_parts[j].textContent = cyllenus(message_parts[j].textContent);
@@ -38,10 +38,10 @@ function cyllenus(chat) {
 
 		function autism_word(word) {
         // Autisms up a word
-        
+
         var num = rand_num(6);
         var new_word = "";
-        
+
         for (var i = 0; i < word.length; i++) {
             if (num !== 1) {
                 if (word.length > 1) {
@@ -56,13 +56,13 @@ function cyllenus(chat) {
                     new_word += word;
                 }
             }
-            
+
             num = rand_num(6);
         }
-        
+
         return new_word;
     }
-	
+
     function autism() {
         var split = chat.split(" ");
         var new_sentence = [];

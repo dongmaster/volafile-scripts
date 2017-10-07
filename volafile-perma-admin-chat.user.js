@@ -2,9 +2,9 @@
 // @name        Perma admin chat
 // @namespace   volafile.admin.chat
 // @description Adds a button that toggles admin chat (so you don't have to type /a all the time)
-// @include     https://volafile.io/r/*
-// @match       https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @match       https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 

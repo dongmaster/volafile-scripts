@@ -2,8 +2,8 @@
 // @name        Volafile sound notification
 // @namespace   volafile.soundnotification
 // @description When someone highlights you it plays a sound. Please scroll down below the wall of links to the configuration part and configure the script.
-// @include     https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 

@@ -2,9 +2,9 @@
 // @name        Volafile clear chat
 // @namespace   volafile.clearchat
 // @description Clears every chat message on volafile.
-// @include     *://volafile.io/r/*
-// @match       *://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @match       https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 

@@ -2,20 +2,20 @@
 // @name        volafile-mod
 // @namespace   org.lg188.volafile-mod
 // @description Aids the current volafile moderators
-// @include     https://volafile.io/*
-// @exclude     https://volafile.io/
-// @exclude     https://volafile.io/rules
-// @exclude     https://volafile.io/top/*
-// @exclude     https://volafile.io/tos
-// @exclude     https://volafile.io/privacy
-// @exclude     https://volafile.io/impressum
-// @exclude     https://volafile.io/user/*
-// @exclude     https://volafile.io/donate
-// @exclude     https://volafile.io/about
-// @exclude     https://volafile.io/faq
-// @exclude     https://volafile.io/different
-// @exclude     https://volafile.io/credits
-// @version     0.2.0-rc2
+// @include     https://volafile.org/*
+// @exclude     https://volafile.org/
+// @exclude     https://volafile.org/rules
+// @exclude     https://volafile.org/top/*
+// @exclude     https://volafile.org/tos
+// @exclude     https://volafile.org/privacy
+// @exclude     https://volafile.org/impressum
+// @exclude     https://volafile.org/user/*
+// @exclude     https://volafile.org/donate
+// @exclude     https://volafile.org/about
+// @exclude     https://volafile.org/faq
+// @exclude     https://volafile.org/different
+// @exclude     https://volafile.org/credits
+// @version     0.3.0-rc2
 // @grant       none
 // @require     https://code.jquery.com/jquery-2.1.3.js
 // @require	http://notifyjs.com/dist/notify-combined.js
@@ -135,7 +135,7 @@ function tick(){
 
 function colourLinks(){
 	var dest = $(this).context;
-	if(dest.pathname.match(/^\/r\/.{1,}/) && dest.hostname == "volafile.io"){
+	if(dest.pathname.match(/^\/r\/.{1,}/) && dest.hostname == "volafile.org"){
 		var id = dest.pathname.match(/^\/r\/(.{1,})/)[1];
 		var strgID = "meta:" + id;
 		var roomData = load(strgID);
@@ -184,7 +184,7 @@ function colourLinks(){
 		}
 
 	}else{
-		if(dest.hostname == "volafile.io" && dest.pathname.match(/^\/get\/.{1,}/)){
+		if(dest.hostname == "volafile.org" && dest.pathname.match(/^\/get\/.{1,}/)){
 			reg(this);
 		}else{
 			$(this).addClass("nVolaLink");

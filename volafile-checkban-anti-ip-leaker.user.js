@@ -2,9 +2,9 @@
 // @name        Volafile Checkban anti IP address leaker
 // @namespace   volafile.checkban.anti.ip.address.leaker
 // @description Tries to prevent you from leaking IP addresses when you're checking bans with the /checkban chat command. Remember, this is not bulletproof. This will stop IP address leaks 99% of the time
-// @include     https://volafile.io/r/*
-// @match       https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @match       https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 

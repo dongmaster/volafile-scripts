@@ -2,8 +2,8 @@
 // @name        Volafile ip address hider 2
 // @namespace   volafile.ip.hider
 // @description Hides ip addresses for mods.
-// @include     https://volafile.io/r/*
-// @version     3.99
+// @include     https://volafile.org/r/*
+// @version     4
 // @grant       none
 // @run-at      document-start
 // ==/UserScript==

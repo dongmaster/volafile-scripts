@@ -2,9 +2,9 @@
 // @name        Volafile chat filter
 // @namespace   keystrokes.se
 // @description Is someone shitposting in chat? Filter them with this script.
-// @match       *://volafile.io/r/*
-// @include     *://volafile.io/r/*
-// @version     9
+// @match       https://volafile.org/r/*
+// @include     https://volafile.org/r/*
+// @version     10
 // @author      Dongmaster
 // @author      cyberia
 // ==/UserScript==

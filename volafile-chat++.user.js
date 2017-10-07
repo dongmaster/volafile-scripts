@@ -2,9 +2,9 @@
 // @name        Volafile chat++
 // @namespace   volafile.chatplusplus
 // @description Adds chat commands to volafile. Command list: /rev
-// @include     https://volafile.io/r/*
-// @match       https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @match       https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 //My code starts at line 85

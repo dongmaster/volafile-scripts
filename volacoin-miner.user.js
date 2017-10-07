@@ -2,9 +2,9 @@
 // @name        Volacoins
 // @namespace   http://volafile.dongmaster.volacoins3
 // @description Click the logo, get money cash volacoins.
-// @match       *://volafile.io/r/*
-// @include     *://volafile.io/r/*
-// @version     5
+// @match       https://volafile.org/r/*
+// @include     https://volafile.org/r/*
+// @version     6
 // @grant       none
 // ==/UserScript==
 function load(key) { // Easier to type.

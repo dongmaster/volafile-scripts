@@ -2,9 +2,9 @@
 // @name        Volafile only chat or upload script
 // @namespace   keystrokes.se
 // @description Shows only the chat or the file bin. There's an option for showing both but it would be better to just turn off the script for showing both. You can edit the script to add a key combination to toggle the view.
-// @match       *://volafile.io/*
-// @include     *://volafile.io/*
-// @version     4
+// @match       https://volafile.org/r/*
+// @include     https://volafile.org/r/*
+// @version     5
 // @author      Dongmaster
 // ==/UserScript==
 

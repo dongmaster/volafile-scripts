@@ -2,9 +2,9 @@
 // @name        Volafile last highlight
 // @namespace   volafile.last.highlight
 // @description Takes you to the last highlight
-// @include     https://volafile.io/r/*
-// @match       https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @match       https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 

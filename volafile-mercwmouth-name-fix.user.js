@@ -2,8 +2,8 @@
 // @name        Volafile MercWMouth Name Fix
 // @namespace   volafile.mercwmouth.name.fix
 // @description Fixes Merc's name
-// @include     https://volafile.io/r/*
-// @version     1
+// @include     https://volafile.org/r/*
+// @version     2
 // @grant       none
 // ==/UserScript==
 
